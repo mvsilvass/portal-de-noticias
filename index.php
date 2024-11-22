@@ -22,13 +22,12 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <!-- Logo e Links à Esquerda -->
+                <!-- Logo e Links -->
                 <a class="navbar-brand" href="#">Portal de Notícias</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <!-- Menu de Links de Navegação à Esquerda -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="#">Tecnologia</a>
@@ -40,7 +39,7 @@
                             <a class="nav-link" aria-current="page" href="#">Entretenimento</a>
                         </li>
                     </ul>
-                    <!-- Link de Login à Direita -->
+                    <!-- Link de Login -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">
