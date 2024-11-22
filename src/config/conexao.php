@@ -1,7 +1,7 @@
 <?php
 
     $host = 'localhost';
-    $dbname = 'agenda';
+    $dbname = 'portal_noticia';
     $username = 'root';
     $password = '';
 
