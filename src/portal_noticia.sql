@@ -28,7 +28,6 @@ CREATE TABLE `noticias` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `titulo` VARCHAR(255) NOT NULL,
   `conteudo` TEXT NOT NULL,
-  `imagem` VARCHAR(255), -- Caminho da imagem da notícia
   `id_escritor` INT NOT NULL,
   `id_categoria` INT NOT NULL, -- Relaciona a categoria da notícia
   `status` ENUM('pendente', 'aprovada', 'rejeitada') DEFAULT 'pendente', -- Status da notícia
