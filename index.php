@@ -60,7 +60,7 @@ $result = $conn->query($query);
                                 <div class='card h-100'>
                                     <div class='card-body'>
                                         <h5 class='card-title'>{$row['titulo']}</h5>
-                                        <p class='card-text'>" . substr($row['conteudo'], 0, 100) . "...</p>
+                                        <p class='card-text'>" . $row['conteudo'] . "</p>
                                     </div>
                                     <div class='card-footer text-muted'>
                                         <p>Autor: {$row['autor']} - {$row['data_criacao']}</p>
