@@ -42,6 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+    input.form-control:focus, select.form-select:focus {
+        box-shadow: 0 0 0 0.25rem rgba(211, 211, 211, 0.5) !important;
+        border-color: #d3d3d3 !important;
+        outline: none !important;
+    }
+</style>
 <body class="bg-light d-flex justify-content-center align-items-center vh-100">
 
 <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px;">
@@ -62,7 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="senha" class="form-label">Senha</label>
             <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Login</button>
+        <button type="submit" class="btn w-100" style="background-color: #343a40 !important; color: white;">Login</button>
+
     </form>
 
     <p class="text-center mt-3">
