@@ -32,6 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../src/styles/styles.css">
 </head>
+<style>
+    input.form-control:focus, select.form-select:focus {
+        box-shadow: 0 0 0 0.25rem rgba(211, 211, 211, 0.5) !important;
+        border-color: #d3d3d3 !important;
+        outline: none !important;
+    }
+</style>
 <body class="bg-light" style="min-height: 100vh; display: flex; justify-content: center; align-items: center;">
     <main class="container py-5">
         <div class="col-md-6 mx-auto">
@@ -58,9 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <option value="admin">Admin</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                <button type="submit" class="btn w-100" style="background-color: #343a40 !important; color: white;">Cadastrar</button>
             </form>
-
             <p class="mt-3 text-center">Já tem uma conta? <a href="../pages/login.php">Faça seu login aqui</a></p>
         </div>
     </main>
