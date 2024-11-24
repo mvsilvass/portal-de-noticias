@@ -1,6 +1,9 @@
 <?php
 require_once '../config/conexao.php'; // Conexão ao banco de dados
 
+// Variável para mensagens de sucesso ou erro
+$msg = "";
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
@@ -11,21 +14,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ssss", $nome, $email, $senha, $tipo);
 
     if ($stmt->execute()) {
-        echo "Usuário cadastrado com sucesso!";
+        // Mensagem de sucesso
+        $msg = "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
     } else {
-        echo "Erro ao cadastrar usuário: " . $stmt->error;
+        // Mensagem de erro
+        $msg = "<div class='alert alert-danger' role='alert'>Erro ao cadastrar usuário: " . $stmt->error . "</div>";
     }
 }
 ?>
-<form method="POST">
-    <input type="text" name="nome" placeholder="Nome" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="senha" placeholder="Senha" required>
-    <select name="tipo">
-        <option value="escritor">Escritor</option>
-        <option value="admin">Admin</option>
-    </select>
-    <button type="submit">Cadastrar</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Usuário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../src/styles/styles.css">
+</head>
+<body class="bg-light" style="min-height: 100vh; display: flex; justify-content: center; align-items: center;">
+    <main class="container py-5">
+        <div class="col-md-6 mx-auto">
+            <!-- Exibe a mensagem de sucesso ou erro -->
+            <?php echo $msg; ?>
 
-<p>Já tem uma conta? <a href="../pages/login.php">Faça seu login aqui</a></p>
+            <form method="POST" class="bg-white p-4 border rounded shadow">
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="senha" class="form-label">Senha</label>
+                    <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tipo" class="form-label">Tipo de Usuário</label>
+                    <select name="tipo" id="tipo" class="form-select">
+                        <option value="escritor">Escritor</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+            </form>
+
+            <p class="mt-3 text-center">Já tem uma conta? <a href="../pages/login.php">Faça seu login aqui</a></p>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
