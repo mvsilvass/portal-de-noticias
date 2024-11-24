@@ -58,13 +58,12 @@ $result = $conn->query($query);
                     while ($row = $result->fetch_assoc()) {
                         echo "<div class='col-md-4 mb-4'>
                                 <div class='card h-100'>
-                                    <img src='{$row['imagem']}' class='card-img-top' alt='Imagem'>
                                     <div class='card-body'>
                                         <h5 class='card-title'>{$row['titulo']}</h5>
                                         <p class='card-text'>" . substr($row['conteudo'], 0, 100) . "...</p>
                                     </div>
                                     <div class='card-footer text-muted'>
-                                        <small>Autor: {$row['autor']} - {$row['data_criacao']}</small>
+                                        <p>Autor: {$row['autor']} - {$row['data_criacao']}</p>
                                     </div>
                                 </div>
                             </div>";
