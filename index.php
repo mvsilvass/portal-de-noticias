@@ -1,13 +1,11 @@
 <?php
 session_start();
+
 // Incluindo o arquivo de conexão
 include './src/config/conexao.php';
 
 // Consulta de notícias publicadas
-$query = "SELECT noticias.*, usuarios.nome AS autor
-          FROM noticias
-          JOIN usuarios ON noticias.id_escritor = usuarios.id
-          WHERE status = 'aprovada'";
+$query = "SELECT noticias.*, usuarios.nome AS autor FROM noticias JOIN usuarios ON noticias.id_escritor = usuarios.id WHERE status = 'aprovada'";
 $result = $conn->query($query);
 ?>
 
@@ -18,16 +16,34 @@ $result = $conn->query($query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Notícias</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./src/styles/styles.css">
 </head>
-<body>
+<body class="bg-light">
     <header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Portal de Notícias</a>
-                <div class="collapse navbar-collapse">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Tecnologia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Esportes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Entretenimento</a>
+                        </li>
+                    </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="./src/pages/login.php">Login</a>
+                            <a class="nav-link" href="./src/pages/login.php">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -35,33 +51,38 @@ $result = $conn->query($query);
         </nav>
     </header>
 
-    <main>
-        <div class="noticias">
+    <main class="container py-5">
+        <div class="row">
             <?php
-                // Verificando se a consulta retornou resultados
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<div class='noticia'>
-                                <h2>{$row['titulo']}</h2>
-                                <p>{$row['conteudo']}</p>
-                                <small>Autor: {$row['autor']} - {$row['data_criacao']}</small>
+                        echo "<div class='col-md-4 mb-4'>
+                                <div class='card h-100'>
+                                    <img src='{$row['imagem']}' class='card-img-top' alt='Imagem'>
+                                    <div class='card-body'>
+                                        <h5 class='card-title'>{$row['titulo']}</h5>
+                                        <p class='card-text'>" . substr($row['conteudo'], 0, 100) . "...</p>
+                                    </div>
+                                    <div class='card-footer text-muted'>
+                                        <small>Autor: {$row['autor']} - {$row['data_criacao']}</small>
+                                    </div>
+                                </div>
                             </div>";
                     }
                 } else {
                     echo "<div class='d-flex justify-content-center align-items-center vh-100'>
-                    <p class='text-center text-muted fw-bold fs-4'>Nenhuma notícia encontrada.</p>
-                  </div>";
+                            <p class='text-center text-muted fw-bold fs-4'>Nenhuma notícia encontrada.</p>
+                          </div>";
                 }
             ?>
         </div>
     </main>
 
-    <footer>
-        <div>
-            <p>&copy; 2024 Portal de Notícias. Todos os direitos reservados.</p>
-        </div>
+    <footer class="text-white text-center py-3" style="background-color: #343a40;">
+        <div>Portal de Notícias &copy; <?php echo date('Y'); ?></div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
