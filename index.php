@@ -28,17 +28,6 @@ $result = $conn->query($query);
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Tecnologia</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Esportes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Entretenimento</a>
-                        </li>
-                    </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="./src/pages/login.php">
