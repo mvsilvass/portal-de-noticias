@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container d-flex justify-content-center">
     <div class="card p-4 shadow-lg" style="width: 100%; max-width: 600px;">
-        <h2 class="text-center text-secondary mb-4">Escrever Notícia</h2>
+        <h2 class="text-center text-secondary mb-4">Escrever notícia</h2>
 
         <?php if (!empty($erro)): ?>
             <div class="alert alert-danger" role="alert">
