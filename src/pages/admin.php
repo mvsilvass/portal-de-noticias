@@ -45,9 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container mt-5">
     <h2 class="text-center text-secondary mb-4">Painel de Administração</h2>
-    <a href="../index.php" class="btn btn-dark mb-3">Sair</a>
 
-    <h4>Notícias Pendentes</h4>
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
@@ -63,19 +61,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php while ($noticia = $result->fetch_assoc()): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($noticia['titulo']); ?></td>
-                        <td><?php echo nl2br(htmlspecialchars(substr($noticia['conteudo'], 0, 100)) . '...'); ?></td>
+                        <td><?php echo nl2br(htmlspecialchars($noticia['conteudo'])); ?></td>
                         <td><?php echo htmlspecialchars($noticia['escritor']); ?></td>
                         <td><?php echo ucfirst($noticia['status']); ?></td>
-                        <td>
+                        <td class="d-flex flex-column justify-content-center align-items-center">
                             <form method="POST" class="d-inline">
                                 <input type="hidden" name="noticia_id" value="<?php echo $noticia['id']; ?>">
-                                <button type="submit" name="aprovar" class="btn btn-success">Aprovar</button>
+                                <button type="submit" name="aprovar" class="btn btn-success mb-2">Aprovar</button>
                             </form>
                             <form method="POST" class="d-inline">
                                 <input type="hidden" name="noticia_id" value="<?php echo $noticia['id']; ?>">
                                 <button type="submit" name="rejeitar" class="btn btn-danger">Rejeitar</button>
                             </form>
                         </td>
+
                     </tr>
                 <?php endwhile; ?>
             </tbody>
