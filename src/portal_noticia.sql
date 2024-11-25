@@ -22,8 +22,8 @@ CREATE TABLE `noticias` (
   FOREIGN KEY (`id_escritor`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Tabela: escrito_noticia (associação entre escritor e notícia)
-CREATE TABLE `escrito_noticia` (
+-- Tabela: escritor_noticia (associação entre escritor e notícia)
+CREATE TABLE `escritor_noticia` (
   `id_escritor` INT(5) NOT NULL,
   `id_noticia` INT(5) NOT NULL,
   PRIMARY KEY (`id_escritor`, `id_noticia`),
