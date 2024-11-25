@@ -42,10 +42,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Escrever Notícia</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
 
-<div class="container mt-5">
-    <div class="card p-4 shadow-lg">
+<style>
+    input.form-control:focus, textarea.form-control:focus {
+        box-shadow: 0 0 0 0.25rem rgba(211, 211, 211, 0.5) !important;
+        border-color: #d3d3d3 !important;
+        outline: none !important;
+    }
+</style>
+
+<body class="bg-light min-vh-100 d-flex align-items-center">
+
+<div class="container d-flex justify-content-center">
+    <div class="card p-4 shadow-lg" style="width: 100%; max-width: 600px;">
         <h2 class="text-center text-secondary mb-4">Escrever Notícia</h2>
 
         <?php if (!empty($erro)): ?>
@@ -69,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="conteudo" class="form-label">Conteúdo</label>
                 <textarea class="form-control" id="conteudo" name="conteudo" rows="5" placeholder="Digite o conteúdo da notícia" required></textarea>
             </div>
-            <button type="submit" class="btn w-100" style="background-color: #343a40 !important; color: white;">Publicar Notícia</button>
+            <button type="submit" class="btn w-100" style="background-color: #343a40 !important; color: white;">Publicar</button>
         </form>
     </div>
 </div>
