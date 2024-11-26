@@ -2,7 +2,7 @@
 require_once '../config/conexao.php'; // Conexão ao banco de dados
 
 // Variável para mensagens de sucesso ou erro
-$msg = "";
+$message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
@@ -10,15 +10,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
     $tipo = $_POST['tipo'];
 
-    $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, senha, tipo) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $nome, $email, $senha, $tipo);
+    // Usando try-catch para capturar exceções
+    try {
+        $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, senha, tipo) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $nome, $email, $senha, $tipo);
 
-    if ($stmt->execute()) {
-        // Mensagem de sucesso
-        $msg = "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
-    } else {
-        // Mensagem de erro
-        $msg = "<div class='alert alert-danger' role='alert'>Erro ao cadastrar usuário: " . $stmt->error . "</div>";
+        // Tenta executar a query
+        if ($stmt->execute()) {
+            // Mensagem de sucesso
+            $message = "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
+        } else {
+            // Mensagem de erro genérica, se houver outro erro
+            $message = "<div class='alert alert-danger' role='alert'>Erro ao cadastrar usuário: " . $stmt->error . "</div>";
+        }
+    } catch (mysqli_sql_exception $e) {
+        // Captura o erro de duplicidade e mostra uma mensagem personalizada
+        if ($e->getCode() === 1062) {  // Código de erro de chave duplicada
+            $message = "<div class='alert alert-danger' role='alert'>Este e-mail já está cadastrado!</div>";
+        } else {
+            // Mensagem para outros erros
+            $message = "<div class='alert alert-danger' role='alert'>Erro ao cadastrar usuário: " . $e->getMessage() . "</div>";
+        }
     }
 }
 ?>
@@ -43,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main class="container py-5">
         <div class="col-md-6 mx-auto">
             <!-- Exibe a mensagem de sucesso ou erro -->
-            <?php echo $msg; ?>
+            <?php echo $message; ?>
 
             <form method="POST" class="bg-white p-4 border rounded shadow">
                 <div class="mb-3">
