@@ -1,14 +1,15 @@
-body{
+body {
     height: 100vh;
     width: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
 }
-    
+
 main {
     flex: 1;
 }
+
 footer {
     background-color: #343a40 !important;
     color: white;
@@ -47,3 +48,8 @@ footer {
     font-size: 1.2rem;
 }
 
+.card-footer.bg-dark {
+    background-color: #7D7C7C !important; /* Cor mais escura */
+    color: white !important;             /* Texto branco */
+    line-height: 1.5;                    /* Espaçamento entre linhas */
+}

@@ -51,8 +51,9 @@ $result = $conn->query($query);
                                         <h5 class='card-title'>{$row['titulo']}</h5>
                                         <p class='card-text'>" . $row['conteudo'] . "</p>
                                     </div>
-                                    <div class='card-footer text-muted'>
-                                        <p>Autor: {$row['autor']} - {$row['data_criacao']}</p>
+                                    <div class='card-footer text-muted bg-dark text-white'>
+                                        <p>Autor: {$row['autor']}</p>
+                                        <p>Data: {$row['data_criacao']}</p>
                                     </div>
                                 </div>
                             </div>";
@@ -69,7 +70,6 @@ $result = $conn->query($query);
     <footer class="text-white text-center py-3" style="background-color: #343a40;">
         <div>Portal de Notícias &copy; <?php echo date('Y'); ?></div>
     </footer>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
