@@ -6,10 +6,6 @@ body {
     flex-direction: column;
 }
 
-main {
-    flex: 1;
-}
-
 header{
     background-color: #343a40 !important;
 }
