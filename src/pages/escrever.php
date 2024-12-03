@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Prepara a inserção da notícia no banco de dados
         $id_escritor = $_SESSION['usuario_id'];
         $status = 'pendente'; // Status inicial da notícia
-        $stmt = $conn->prepare("INSERT INTO noticias (titulo, conteudo, id_escritor, status) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssis", $titulo, $conteudo, $id_escritor, $status);
+        $stmt = $conn->prepare("INSERT INTO noticias (titulo, conteudo, id_escritor, status, imagem) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssiss", $titulo, $conteudo, $id_escritor, $status, $imagem_caminho);
 
         if ($stmt->execute()) {
             $sucesso = "Notícia cadastrada com sucesso!";
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $erro = "Erro ao cadastrar notícia.";
         }
     }
-}
+}   
 ?>
 
 <!DOCTYPE html>
@@ -113,6 +113,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="mb-3">
                     <label for="conteudo" class="form-label">Conteúdo</label>
                     <textarea class="form-control" id="conteudo" name="conteudo" rows="5" placeholder="Digite o conteúdo da notícia" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="imagem" class="form-label">Imagem</label>
+                    <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
                 </div>
                 <button type="submit" class="btn w-100" style="background-color: #343a40 !important; color: white;">Publicar</button>
             </form>
