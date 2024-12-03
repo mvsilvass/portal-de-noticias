@@ -40,7 +40,7 @@ $result = $conn->query($query);
         </nav>
     </header>
 
-    <main class="container py-5">
+    <main class="container py-5 flex-grow-1">
         <div class="row">
             <?php
                 if ($result->num_rows > 0) {
