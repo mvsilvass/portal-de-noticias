@@ -58,6 +58,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         color: #343a40;
         text-decoration: none;
     }
+    .login-link {
+        margin-top: 1rem; /* Ajuste o espaçamento acima do link */
+        margin-bottom: 0; /* Remove margem abaixo */
+        text-align: center; /* Centraliza o texto */
+        font-size: 1rem; /* Ajuste o tamanho do texto */
+    }
 </style>
 <body class="bg-light" style="min-height: 100vh; display: flex; justify-content: center; align-items: center;">
 
@@ -91,8 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </select>
                 </div>
                 <button type="submit" class="btn w-100" style="background-color: #343a40 !important; color: white;">Cadastrar</button>
+                <p class="login-link">Já tem uma conta? <a href="../pages/login.php">Faça seu login aqui</a></p>
             </form>
-            <p class="mt-3 text-center">Já tem uma conta? <a href="../pages/login.php">Faça seu login aqui</a></p>
+            
         </div>
     </main>
 
