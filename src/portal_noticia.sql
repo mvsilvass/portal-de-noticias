@@ -19,6 +19,7 @@ CREATE TABLE `noticias` (
   `id_escritor` INT NOT NULL,
   `status` ENUM('pendente', 'aprovada', 'rejeitada') DEFAULT 'pendente', -- Status da notícia
   `data_criacao` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `imagem` VARCHAR(255) DEFAULT NULL,
   FOREIGN KEY (`id_escritor`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

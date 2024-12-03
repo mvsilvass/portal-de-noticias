@@ -10,6 +10,10 @@ main {
     flex: 1;
 }
 
+header{
+    background-color: #343a40 !important;
+}
+
 footer {
     background-color: #343a40 !important;
     color: white;
@@ -49,7 +53,5 @@ footer {
 }
 
 .card-footer.bg-dark {
-    background-color: #7D7C7C !important;
-    color: white !important;            
-    line-height: 1.5;                    
+    background-color: #686D76 !important;             
 }

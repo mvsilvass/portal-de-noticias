@@ -51,7 +51,7 @@ $result = $conn->query($query);
                                         <h5 class='card-title'>{$row['titulo']}</h5>
                                         <p class='card-text'>" . $row['conteudo'] . "</p>
                                     </div>
-                                    <div class='card-footer text-muted bg-dark text-white'>
+                                    <div class='card-footer bg-dark text-white'>
                                         <p>Autor: {$row['autor']}</p>
                                         <p>Data: {$row['data_criacao']}</p>
                                     </div>
