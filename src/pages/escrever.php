@@ -4,7 +4,7 @@ require_once '../config/conexao.php';
 
 // Verifica se o usuário está autenticado
 if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo'] !== 'escritor') {
-    header("Location: ../index.php");
+    header("Location: acesso_negado.php");
     exit;
 }
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $erro = "Erro ao cadastrar notícia.";
         }
     }
-}   
+}
 ?>
 
 <!DOCTYPE html>
