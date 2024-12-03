@@ -79,15 +79,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="POST" class="bg-white p-4 border rounded shadow">
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome</label>
-                    <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required>
+                    <input type="text" name="nome" id="nome" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                    <input type="email" name="email" id="email" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label for="senha" class="form-label">Senha</label>
-                    <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" required>
+                    <input type="password" name="senha" id="senha" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label for="tipo" class="form-label">Tipo de Usuário</label>
