@@ -10,15 +10,25 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo'] !== 'escritor') {
 
 $erro = $sucesso = '';
 
-// Processa o envio do formulário
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $_POST['titulo'];
     $conteudo = $_POST['conteudo'];
+    $imagem = $_FILES['imagem'];
 
     // Verifica se os campos estão preenchidos
     if (empty($titulo) || empty($conteudo)) {
         $erro = 'Por favor, preencha todos os campos.';
     } else {
+        // Lidar com o upload da imagem
+        if ($imagem['error'] === 0) {
+            $imagem_nome = $imagem['name'];
+            $imagem_temporal = $imagem['tmp_name'];
+            $imagem_caminho = '../imagens/' . $imagem_nome;
+            move_uploaded_file($imagem_temporal, $imagem_caminho);
+        } else {
+            $imagem_caminho = null; // Se não houver imagem, o caminho fica nulo
+        }
+
         // Prepara a inserção da notícia no banco de dados
         $id_escritor = $_SESSION['usuario_id'];
         $status = 'pendente'; // Status inicial da notícia
@@ -105,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
 
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="titulo" class="form-label">Título</label>
                     <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Digite o título da notícia" required>

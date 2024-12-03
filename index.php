@@ -46,17 +46,23 @@ $result = $conn->query($query);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<div class='col-md-4 mb-4'>
-                                <div class='card h-100'>
-                                    <div class='card-body'>
-                                        <h5 class='card-title'>{$row['titulo']}</h5>
-                                        <p class='card-text'>" . $row['conteudo'] . "</p>
-                                    </div>
-                                    <div class='card-footer bg-dark text-white'>
-                                        <p>Autor: {$row['autor']}</p>
-                                        <p>Data: {$row['data_criacao']}</p>
-                                    </div>
-                                </div>
-                            </div>";
+                                <div class='card h-100'>";
+                                    
+                                    // Exibindo a imagem, se houver
+                                    if (!empty($row['imagem'])) {
+                                        echo "<img src='./src/imagens/{$row['imagem']}' class='card-img-top' alt='Imagem da notícia'>";
+                                    }
+
+                                    echo "<div class='card-body'>
+                                            <h5 class='card-title'>{$row['titulo']}</h5>
+                                            <p class='card-text'>" . $row['conteudo'] . "</p>
+                                          </div>
+                                          <div class='card-footer bg-dark text-white'>
+                                            <p>Autor: {$row['autor']}</p>
+                                            <p>Data: {$row['data_criacao']}</p>
+                                          </div>
+                                      </div>
+                                  </div>";
                     }
                 } else {
                     echo "<div class='d-flex justify-content-center align-items-center vh-100'>

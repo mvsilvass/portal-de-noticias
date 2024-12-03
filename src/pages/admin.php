@@ -44,7 +44,7 @@
         }
         
         // Consultar as notícias pendentes
-        $stmt = $conn->prepare("SELECT n.id, n.titulo, n.conteudo, u.nome AS escritor, n.status
+        $stmt = $conn->prepare("SELECT n.id, n.titulo, n.conteudo, u.nome AS escritor, n.status, n.imagem
                                 FROM noticias n
                                 JOIN usuarios u ON n.id_escritor = u.id
                                 WHERE n.status = 'pendente'");
@@ -66,46 +66,46 @@
                 $stmt->bind_param("i", $noticia_id);
                 $stmt->execute();
             }
-            // Redirecionar após aprovação ou rejeição
+            // Redirecionar para atualizar a lista
             header("Location: admin.php");
             exit;
         }
         ?>
 
-        <?php if ($result->num_rows > 0): ?>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Conteúdo</th>
-                        <th>Escritor</th>
-                        <th>Status</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = $result->fetch_assoc()): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['titulo']); ?></td>
-                            <td><?php echo htmlspecialchars($row['conteudo']); ?></td>
-                            <td><?php echo htmlspecialchars($row['escritor']); ?></td>
-                            <td><?php echo htmlspecialchars($row['status']); ?></td>
-                            <td>
-                                <form method="POST">
-                                    <input type="hidden" name="noticia_id" value="<?php echo $row['id']; ?>">
-                                    <button type="submit" name="aprovar" class="btn btn-success btn-sm">Aprovar</button>
-                                    <button type="submit" name="rejeitar" class="btn btn-danger btn-sm">Rejeitar</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <div class="alert alert-info text-center">
-                Nenhuma notícia pendente.
-            </div>
-        <?php endif; ?>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Conteúdo</th>
+                    <th>Escritor</th>
+                    <th>Status</th>
+                    <th>Imagem</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($row['titulo']); ?></td>
+                    <td><?php echo nl2br(htmlspecialchars($row['conteudo'])); ?></td>
+                    <td><?php echo htmlspecialchars($row['escritor']); ?></td>
+                    <td><?php echo htmlspecialchars($row['status']); ?></td>
+                    <td>
+                        <?php if ($row['imagem']): ?>
+                            <img src="../imagens/<?php echo htmlspecialchars($row['imagem']); ?>" alt="Imagem" width="100">
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="noticia_id" value="<?php echo $row['id']; ?>">
+                            <button type="submit" name="aprovar" class="btn btn-success btn-sm">Aprovar</button>
+                            <button type="submit" name="rejeitar" class="btn btn-danger btn-sm">Rejeitar</button>
+                        </form>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
     </div>
 </div>
 
