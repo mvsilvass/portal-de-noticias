@@ -50,9 +50,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         border-color: #d3d3d3 !important;
         outline: none !important;
     }
+    .home-icon {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 24px;
+        color: #343a40;
+        text-decoration: none;
+    }
 </style>
 <body class="bg-light" style="min-height: 100vh; display: flex; justify-content: center; align-items: center;">
-    <main class="container py-5">
+
+<a href="../../index.php" class="home-icon">
+    <i class="fas fa-home"></i>
+</a>
+
+<main class="container py-5">
         <div class="col-md-6 mx-auto">
             <!-- Exibe a mensagem de sucesso ou erro -->
             <?php echo $message; ?>

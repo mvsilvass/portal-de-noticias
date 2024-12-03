@@ -40,7 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (para ícone de casa) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <style>
     input.form-control:focus, select.form-select:focus {
@@ -48,8 +51,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         border-color: #d3d3d3 !important;
         outline: none !important;
     }
+    .home-icon {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 24px;
+        color: #343a40;
+        text-decoration: none;
+    }
 </style>
 <body class="bg-light d-flex justify-content-center align-items-center vh-100">
+
+<!-- Ícone de casa -->
+<a href="../../index.php" class="home-icon">
+    <i class="fas fa-home"></i>
+</a>
 
 <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px;">
     <h2 class="text-center text-secondary mb-4">Login</h2>
@@ -70,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" required>
         </div>
         <button type="submit" class="btn w-100" style="background-color: #343a40 !important; color: white;">Login</button>
-
     </form>
 
     <p class="text-center mt-3">
